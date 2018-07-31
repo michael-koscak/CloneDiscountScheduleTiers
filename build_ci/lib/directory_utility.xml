@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project name="directory_utility">
+
+    <!-- ensures that there is a package.xml in the directory -->
+    <condition property="has.package">
+        <available file="${basedir}/src/package.xml" property="has.package"/>
+    </condition>
+
+    <target name="check-backup-package">
+        <available file="${basedir}/src/package.xml.backup" property="has.backup"/>
+    </target>
+
+    <!-- wipes all source directories -->
+    <target name="cache-src-package" if="has.package">
+        <copy file="${basedir}/src/package.xml" tofile="${basedir}/src/package.xml.backup"/>
+    </target>
+
+    <!-- wipes all source directories -->
+    <target name="restore-src-package" depends="check-backup-package" if="has.backup">
+        <move file="${basedir}/src/package.xml.backup" tofile="${basedir}/src/package.xml"/>
+    </target>
+
+</project>

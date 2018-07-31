@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<project name="help">
+
+    <target name="help">
+        <echo message="  See the git repository for more usage documentation:
+            https://gitlab.com/WMP/deployment-tools"/>
+        <antcall target="help-properties" />
+        <antcall target="help-retrieve" />
+        <antcall target="help-deploy" />
+    </target>
+
+    <target name="help-properties">
+        <echo message="
+            ${line.separator} ************************* BUILD PROPERTIES *************************
+            ${line.separator} sf.username.src (Required)
+            ${line.separator} Username of source Salesforce org
+            ${line.separator}
+            ${line.separator} sf.password.src (Required)
+            ${line.separator} Password of source Salesforce org
+            ${line.separator}
+            ${line.separator} sf.token.src (Required)
+            ${line.separator} Security token of source Salesforce org
+            ${line.separator}
+            ${line.separator} sf.username.merge
+            ${line.separator} Username of Salesforce org you are merging with. Only necessary when merging source
+            ${line.separator} from multiple orgs
+            ${line.separator}
+            ${line.separator} sf.password.merge
+            ${line.separator} Password of Salesforce org you are merging with. Only necessary when merging source
+            ${line.separator} from multiple orgs
+            ${line.separator}
+            ${line.separator} sf.token.merge
+            ${line.separator} Security token of Salesforce org you are merging with. Only necessary when merging
+            ${line.separator} source from multiple orgs
+            ${line.separator}
+            ${line.separator} sf.username.tgt (Required)
+            ${line.separator} Username of target Salesforce org
+            ${line.separator}
+            ${line.separator} sf.password.tgt (Required)
+            ${line.separator} Password of target Salesforce org
+            ${line.separator}
+            ${line.separator} sf.token.tgt (Required)
+            ${line.separator} Security token of target Salesforce org
+            ${line.separator}
+            ${line.separator} sf.server.src (Required)
+            ${line.separator} Server URL of source org
+            ${line.separator}
+            ${line.separator} sf.server.tgt (Required)
+            ${line.separator} Server URL of target org
+            ${line.separator}
+            ${line.separator} sf.server.merge
+            ${line.separator} Server URL of merge org. Only necessary when merging source from multiple orgs
+            ${line.separator}
+            ${line.separator} sf.poll.wait
+            ${line.separator} Specify (in milliseconds) the amount of time to wait between polls on Salesforce
+            ${line.separator} deployments. Increase this value on long-running deployments that time out
+            ${line.separator}
+            ${line.separator} sf.test.level (Required)
+            ${line.separator} Specify test level. See the build.properties for test level options
+            ${line.separator}
+            ${line.separator} git.username
+            ${line.separator} Username for your git repository
+            ${line.separator}
+            ${line.separator} git.password
+            ${line.separator} Password for your git repository
+            ${line.separator}
+            ${line.separator} git.name
+            ${line.separator} Your name
+            ${line.separator}
+            ${line.separator} git.email
+            ${line.separator} Your email
+            ${line.separator}
+            ${line.separator} git.endpoint
+            ${line.separator} Https endpoint for your git repository
+            ${line.separator}
+            ${line.separator} git.branch
+            ${line.separator} Git branch to interact with (generally origin/[branch])
+
+            ${line.separator} git.srcdir
+            ${line.separator} Specify the src directory file path relative to your project (generally just “src”)
+            "/>
+    </target>
+
+    <target name="help-retrieve">
+        <echo message="
+            ${line.separator}************************* RETRIEVE TARGETS *************************
+            ${line.separator}retrieve-git-source
+            ${line.separator}Retrieves all of the git source for the branch specified in the build.properties file
+            ${line.separator}
+            ${line.separator}retrieve-src-all
+            ${line.separator}Retrieve all metadata stored in the “fullPackage.xml” file located in packages folder.
+            ${line.separator}Populate this with a package of all of your metadata, and use it to pull down complete
+            ${line.separator}images of your org
+            ${line.separator}
+            ${line.separator}retrieve-src
+            ${line.separator}Retrieve all of the source in the package.xml in the src directory from your Salesforce
+            ${line.separator}org
+            "/>
+    </target>
+
+    <target name="help-deploy">
+        <echo message="
+            ${line.separator}************************* DEPLOY TARGETS *************************
+            ${line.separator}validate-git-source
+            ${line.separator}Retrieve source from the specified branch and validate it to your target org
+            ${line.separator}
+            ${line.separator}validate-cmp-source
+            ${line.separator}Retrieve source from source org and validate it to your target org directly
+            ${line.separator}
+            ${line.separator}validate-local-source
+            ${line.separator}Validate the source in your local directory as it stands in the package.xml to your
+            ${line.separator}target org
+            ${line.separator}
+            ${line.separator}deploy-git-source
+            ${line.separator}Retrieve source from the specified branch and deploy it to your target org
+            ${line.separator}
+            ${line.separator}deploy-cmp-source
+            ${line.separator}Retrieve source from source org and deploy it to your target org directly
+            ${line.separator}
+            ${line.separator}deploy-local-source
+            ${line.separator}Deploy the source in your local directory as it stands in the package.xml to your
+            ${line.separator}target org
+            "/>
+    </target>
+
+</project>

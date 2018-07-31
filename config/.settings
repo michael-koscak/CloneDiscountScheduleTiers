@@ -1,0 +1,17 @@
+{
+    "projectName": "CloneRepo",
+    "username": "mkoscak@morningstar.com.cpq2",
+    "id": "23fab780-8e0e-11e8-b1b6-bbebf1f1dce3",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://morningstar--CPQ2.cs67.my.salesforce.com",
+    "workspace": "/Users/mkoscak/Documents/Workspace",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}

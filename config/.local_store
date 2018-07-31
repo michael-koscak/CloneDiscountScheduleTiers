@@ -1,0 +1,30 @@
+{
+    "CloneWithRelated.page": {
+        "createdById": "0050n000001Bo7TAAS",
+        "createdByName": "Mike Koscak",
+        "createdDate": "2018-07-22T20:31:13.000Z",
+        "fileName": "unpackaged/pages/CloneWithRelated.page",
+        "fullName": "CloneWithRelated",
+        "id": "0660n0000004oBFAAY",
+        "lastModifiedById": "0050n000001Bo7TAAS",
+        "lastModifiedByName": "Mike Koscak",
+        "lastModifiedDate": "2018-07-22T22:32:55.000Z",
+        "manageableState": "unmanaged",
+        "type": "ApexPage",
+        "mmState": "clean"
+    },
+    "CPQCloneDiscountSchedule.cls": {
+        "createdById": "0050n000001Bo7TAAS",
+        "createdByName": "Mike Koscak",
+        "createdDate": "2018-07-22T19:08:44.000Z",
+        "fileName": "unpackaged/classes/CPQCloneDiscountSchedule.cls",
+        "fullName": "CPQCloneDiscountSchedule",
+        "id": "01p0n000000LufWAAS",
+        "lastModifiedById": "0050n000001Bo7TAAS",
+        "lastModifiedByName": "Mike Koscak",
+        "lastModifiedDate": "2018-07-22T23:46:26.000Z",
+        "manageableState": "unmanaged",
+        "type": "ApexClass",
+        "mmState": "clean"
+    }
+}

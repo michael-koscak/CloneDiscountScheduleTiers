@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<project name="deploy_salesforce" xmlns:sf="antlib:com.salesforce">
+
+    <!-- Decides if test level should be specified -->
+    <condition property="no.test.level">
+        <equals arg1="${sf.test.level}" arg2="None"/>
+    </condition>
+
+    <!-- Performs deployment validaton from src_dep directory -->
+    <target name="validate-dep">
+        <antcall target="param-deploy">
+            <param name="package" value="${basedir}/src_dep/package.xml" />
+            <param name="source.dir" value="${basedir}/src_dep" />
+            <param name="validate" value="true" />
+        </antcall>
+    </target>
+
+    <!-- Performs deployment validaton from src_cmp directory -->
+    <target name="validate-cmp">
+        <antcall target="param-deploy">
+            <param name="package" value="${basedir}/src_cmp/package.xml" />
+            <param name="source.dir" value="${basedir}/src_cmp" />
+            <param name="validate" value="true" />
+        </antcall>
+    </target>
+
+    <!-- Performs deployment validaton from src directory -->
+    <target name="validate-src">
+        <antcall target="param-deploy">
+            <param name="package" value="${basedir}/src/package.xml" />
+            <param name="source.dir" value="${basedir}/src" />
+            <param name="validate" value="true" />
+        </antcall>
+    </target>
+
+    <!-- Performs deployment from src_dep directory -->
+    <target name="deploy-dep">
+        <antcall target="param-deploy">
+            <param name="package" value="${basedir}/src_dep/package.xml" />
+            <param name="source.dir" value="${basedir}/src_dep" />
+            <param name="validate" value="false" />
+        </antcall>
+    </target>
+
+    <!-- Performs deployment from src_cmp directory -->
+    <target name="deploy-cmp">
+        <antcall target="param-deploy">
+            <param name="package" value="${basedir}/src_cmp/package.xml" />
+            <param name="source.dir" value="${basedir}/src_cmp" />
+            <param name="validate" value="false" />
+        </antcall>
+    </target>
+
+    <!-- Performs deployment from src directory -->
+    <target name="deploy-src">
+        <antcall target="param-deploy">
+            <param name="package" value="${basedir}/src/package.xml" />
+            <param name="source.dir" value="${basedir}/src" />
+            <param name="validate" value="false" />
+        </antcall>
+    </target>
+
+    <!-- Performs deployment based on parameters -->
+	<target name="param-deploy">
+        <if>
+            <equals arg1="${no.test.level}" arg2="true" />
+            <then>
+                <echo message="Deploying to ${sf.username.tgt}" />
+                <sf:deploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
+                    serverurl="${sf.server.tgt}" deployRoot="${source.dir}"
+                    checkonly="${validate}" rollbackOnError="true" purgeOnDelete="${sf.purge.delete}"
+                    allowMissingFiles="false" ignoreWarnings="true" pollWaitMillis="${sf.poll.wait}"/>
+            </then>
+            <else>
+                <echo message="Deploying to ${sf.username.tgt} with test level" />
+                <sf:deploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
+                        serverurl="${sf.server.tgt}" deployRoot="${source.dir}" 
+                        purgeOnDelete="${sf.purge.delete}" checkonly="${validate}" 
+                        testLevel="${sf.test.level}" rollbackOnError="true" allowMissingFiles="false" 
+                        ignoreWarnings="true" pollWaitMillis="${sf.poll.wait}">
+                    <!-- <runTest>CpqSplitServiceTest</runTest>
+                    <runTest>TestCpqPriceFactorFactory</runTest>
+                    <runTest>TestCPQPricingService</runTest>
+                    <runTest>TestEssentialsPricingService</runTest>
+                    <runTest>TestProductFactory</runTest>
+                    <runTest>CPQPricingModelTest</runTest>
+                    <runTest>CpqContractUtility_Test</runTest>
+                    <runTest>AP02_Opportunity_TEST</runTest>
+                    <runTest>TestIndexDataPricingService</runTest>
+                    <runTest>TestLicensedDataPricingService</runTest>
+                    <runTest>TestAWSEnterprisePricingService</runTest>
+                    <runTest>TestMRSPricingService</runTest>
+                    <runTest>TestResearchDistributionPricingService</runTest>
+                    <runTest>TestMPSPricingService</runTest>
+                    <runTest>TestSubscriptionFactory</runTest>
+                    <runTest>SubscriptionUtilityTest</runTest>
+                    <runTest>TestMarketDataPricingService</runTest>
+                    <runTest>TestPriceFactorService</runTest> -->
+                </sf:deploy>
+            </else>
+        </if>
+    </target>
+
+    <target name="cancel-job">
+      <sf:cancelDeploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
+          serverurl="${sf.server.tgt}" requestId="${sf.request.id}"/>
+    </target>
+
+    <target name="quickDeploy">
+      <sf:deployRecentValidation username="${sf.username.tgt}"
+             password="${sf.password.tgt}${sf.token.tgt}"
+             serverurl="${sf.server.tgt}" recentValidationId="${sf.validation.id}"/>
+    </target>
+
+</project>
