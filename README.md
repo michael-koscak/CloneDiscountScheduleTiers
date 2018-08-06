@@ -17,5 +17,5 @@ Clone button for a Discount Schedule record that also clones related Discount Ti
 3. Navigate to the **Discount Schedule** object
 4. Under Buttons, Links and Actions select **New Button or Link**
 5. Create a button with the following setup:
-(images/ButtonSetup.png)
+[!Button Setup](images/ButtonSetup.png)
 6. Add the button to the Discount Schedule page layout
